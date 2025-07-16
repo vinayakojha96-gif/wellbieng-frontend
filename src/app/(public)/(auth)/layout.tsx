@@ -29,7 +29,7 @@ export default function AuthLayout({
   const { loading } = useAuth()!;
   if (loading)
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="flex min-h-screen items-center justify-center">
         <LoadingSpinner />
       </div>
     );

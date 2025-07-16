@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter } from "next/navigation";
 
-import { useAuth } from '@/context/auth-context';
-import { useEffect } from 'react';
-import { AppShimmer } from './ui/app-shimmer';
-import { SidebarProvider } from './ui/sidebar';
+import { useAuth } from "@/context/auth-context";
+import { useEffect } from "react";
+import { AppShimmer } from "./ui/app-shimmer";
+import { SidebarProvider } from "./ui/sidebar";
 
 export default function ProtectedRoute({
   children,
@@ -19,50 +19,45 @@ export default function ProtectedRoute({
   useEffect(() => {
     if (!loading) {
       if (!user) {
-        router.push('/login?next=' + pathname);
+        router.push("/login?next=" + pathname);
         return;
       }
 
-      if (pathname.includes('/teams/new')) {
+      if (pathname.includes("/teams/new")) {
         if (user.canCreateTeams) return;
-        router.push('/dashboard');
+        router.push("/dashboard");
       }
 
       if (
-        !pathname.startsWith('/invite') &&
+        !pathname.startsWith("/invite") &&
         (!user?.teams || user?.teams.length === 0)
       ) {
-        router.push('/teams/new');
+        router.push("/teams/new");
       }
 
-      if (user.role === 'Member') {
-        if (
-          pathname.split('/')[1] !== 'analytics' ||
-          pathname !== '/dashboard'
-        ) {
-          router.push('/dashboard');
+      if (user.role === "Member") {
+        const isDashboard = pathname === "/dashboard";
+        const isAnalyticsUser = pathname.startsWith("/analytics/users/");
+        if (!isDashboard && !isAnalyticsUser) {
+          router.push("/dashboard");
         }
-
-        // if (pathname.split('/')[1] === 'apps') {
-        //   router.push('/dashboard');
-        // }
       }
     }
   }, [user, loading, router, pathname]);
 
   if (loading || !user)
     return (
-      <div className='min-h-screen flex items-center justify-center'>
+      <div className="flex min-h-screen items-center justify-center">
         <SidebarProvider>
           <AppShimmer />
         </SidebarProvider>
       </div>
     );
 
-  if (pathname.startsWith('/invite')) return children;
+  if (pathname.startsWith("/invite")) return children;
 
   if (!user.teams || user.teams.length === 0) {
-    if (pathname === '/teams/new') {
+    if (pathname === "/teams/new") {
       return children;
     }
     return null;

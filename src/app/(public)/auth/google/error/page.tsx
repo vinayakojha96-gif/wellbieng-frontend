@@ -15,9 +15,9 @@ function Search() {
     return null;
   }
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background/10">
-      <div className="bg-background p-8 rounded-lg shadow-md max-w-md w-full text-center">
-        <h1 className="text-2xl font-bold mb-4 text-destructive">
+    <div className="flex min-h-screen items-center justify-center bg-background/10">
+      <div className="w-full max-w-md rounded-lg bg-background p-8 text-center shadow-md">
+        <h1 className="mb-4 text-2xl font-bold text-destructive">
           Google Auth Unsuccessful
         </h1>
         <p className="mb-4 text-gray-600">{searchParams.get("message")}</p>
