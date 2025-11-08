@@ -124,6 +124,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     } catch (error) {
       const e = error as AxiosError<ApiResponse<null>>;
       if (e.response) return e.response.data!;
+      console.log(error)
       return null;
     }
   };

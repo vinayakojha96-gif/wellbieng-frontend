@@ -24,13 +24,15 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 import Loading from "./ui/loading";
 
 export interface App {
-  id: number;
+  id?: string;
   name: string;
-  logo: string;
-  connected: boolean;
   description: string;
-  redirectUrl: string;
-  import: boolean;
+  logo?: string;
+  connected?: boolean;
+  redirectUrl?: string;
+  import?: string;
+  icon?: string;
+  connectUrl?: string;
 }
 
 export function AppsCard({ app }: { app: App }) {
@@ -110,9 +112,12 @@ export function AppsCard({ app }: { app: App }) {
   }
 
   async function handleConnectClick() {
-    const sanitizedUrl = app.redirectUrl.includes("/api")
-      ? app.redirectUrl.replace("/api", "")
-      : app.redirectUrl;
+    const sanitizedUrl = app.redirectUrl
+      ? app.redirectUrl.includes("/api")
+        ? app.redirectUrl.replace("/api", "")
+        : app.redirectUrl
+      : "";
+
     const response = await apiClient.get<string>(sanitizedUrl, {
       headers: {
         "x-team-id": activeTeamId,

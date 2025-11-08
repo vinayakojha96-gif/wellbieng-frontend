@@ -5,6 +5,8 @@ import { deleteCookie, getCookie } from 'cookies-next';
 const apiClient = axios.create({
     baseURL: process.env.NEXT_PUBLIC_API_URL + '/api',
 });
+console.log(process.env.NEXT_PUBLIC_API_URL);
+
 
 // Add JWT to requests
 apiClient.interceptors.request.use(async config => {

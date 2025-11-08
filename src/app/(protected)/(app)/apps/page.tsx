@@ -22,8 +22,28 @@ export default function AppsPage() {
             "x-team-id": activeTeamId,
           },
         });
+        // const apps = (data.success && data.responseObject) || [];
+        const defaultApps: App[] = [
+          {
+            name: "Slack",
+            description: "Integrate Slack for efficient team communication.",
+            icon: "/icons/slack.svg",
+            connectUrl: "/integrations/slack",
+          },
+          {
+            name: "Google Calendar",
+            description: "Sync your events and schedules from Google Calendar.",
+            icon: "/icons/google-calendar.svg",
+            connectUrl: "/integrations/google-calendar",
+          },
+        ];
         const apps = (data.success && data.responseObject) || [];
-        setApps(apps);
+        const mergedApps = [
+          ...apps,
+          ...defaultApps.filter((a) => !apps.find((b) => b.name === a.name)),
+        ];
+
+        setApps(mergedApps);
       } catch (error) {
         console.error("Error fetching apps:", error);
       } finally {
