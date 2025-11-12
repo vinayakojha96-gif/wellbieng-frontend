@@ -34,7 +34,7 @@ export default function AppsPage() {
             name: "Google Calendar",
             description: "Sync your events and schedules from Google Calendar.",
             icon: "/icons/google-calendar.svg",
-            connectUrl: "/integrations/google-calendar",
+            connectUrl: "https://api.wanderfly.in/api/google/redirect",
           },
         ];
         const apps = (data.success && data.responseObject) || [];
