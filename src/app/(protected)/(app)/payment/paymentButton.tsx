@@ -106,7 +106,7 @@ export default function PaymentButton({ amount }: { amount: number }) {
 
     await loadScript("https://checkout.razorpay.com/v1/checkout.js");
 
-    const orderRes = await fetch(`http://127.0.0.1:3333/api/payments/order`, {
+    const orderRes = await fetch(`https://api.wanderfly.in/api/payments/order`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ amount }),
@@ -124,7 +124,7 @@ export default function PaymentButton({ amount }: { amount: number }) {
       theme: { color: "#0d9488" },
 
       handler: async function (response: any) {
-        await fetch(`http://127.0.0.1:3333/api/payments/verify`, {
+        await fetch(`https://api.wanderfly.in/api/payments/verify`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
