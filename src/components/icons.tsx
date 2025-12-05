@@ -10,6 +10,7 @@ import {
     ChevronsRight,
     Circle,
     Copy,
+    CreditCard,
     Ellipsis,
     Eye,
     EyeOff,
@@ -91,6 +92,7 @@ export const Icons = {
     analytics: AlignEndHorizontal,
 
     schedule: CalendarClock,
+    creditCard: CreditCard, 
 
     slack: ({ ...props }: LucideProps) => (
         <svg

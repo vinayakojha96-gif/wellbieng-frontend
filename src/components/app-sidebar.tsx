@@ -52,6 +52,11 @@ const adminNavData = [
         url: "/schedules",
         icon: Icons.schedule,
       },
+      {
+        title: "Payments",
+        url: "/payment",
+        icon: Icons.creditCard,
+      },
     ],
   },
 ] satisfies NavGroupType[];
